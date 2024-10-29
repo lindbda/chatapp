@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatApp - Stranger Safety Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            width: 400px;
+            height: 600px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .chat-box {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            border-bottom: 1px solid #ccc;
+        }
+        .chat-message {
+            margin: 10px 0;
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .user-message {
+            background-color: #e1f5fe;
+            align-self: flex-end;
+        }
+        .bot-message {
+            background-color: #ffe0b2;
+            align-self: flex-start;
+        }
+        .input-container {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 0;
+            outline: none;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #03a9f4;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0288d1;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <div class="bot-message chat-message">Hi there! I’m here to chat with you. What do you like to do for fun?</div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="userInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById("userInput").value;
+            if (userInput.trim() === "") return;
+
+            addMessage(userInput, 'user-message');
+            document.getElementById("userInput").value = "";
+            setTimeout(() => generateBotResponse(userInput), 1000);
+        }
+
+        function addMessage(message, className) {
+            const chatBox = document.getElementById("chatBox");
+            const messageDiv = document.createElement("div");
+            messageDiv.className = `${className} chat-message`;
+            messageDiv.textContent = message;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            let response = "That's interesting! Tell me more!";
+            addMessage(response, 'bot-message');
+        }
+    </script>
+</body>
+</html>
 
