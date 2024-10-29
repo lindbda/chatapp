@@ -104,8 +104,8 @@
 
         async function generateBotResponse(userMessage) {
     try {
-        // Replace with your actual Netlify function URL
-        const netlifyFunctionUrl = "https://YOUR_NETLIFY_FUNCTION_URL/.netlify/functions/huggingfaceHandler";
+        // Use the actual Netlify function URL to interact with HuggingFace
+        const netlifyFunctionUrl = "https://luminous-begonia-edd415.netlify.app/.netlify/functions/huggingfaceHandler";
         
         const response = await fetch(netlifyFunctionUrl, {
             method: "POST",
@@ -127,7 +127,6 @@
         console.error(error);
     }
 }
-
     </script>
 </body>
 </html>
