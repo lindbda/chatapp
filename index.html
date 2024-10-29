@@ -103,9 +103,32 @@
         }
 
         function generateBotResponse(userMessage) {
-            let response = "That's interesting! Tell me more!";
-            addMessage(response, 'bot-message');
-        }
+    userMessage = userMessage.toLowerCase();
+    let response;
+
+    if (userMessage.includes("name")) {
+        response = "I'm just your friendly chatbot! What's your name?";
+    } else if (userMessage.includes("age")) {
+        response = "I'm ageless, but I'm curious—how old are you?";
+    } else if (userMessage.includes("fun")) {
+        response = "I love hearing about fun things! Do you like games or reading?";
+    } else if (userMessage.includes("school")) {
+        response = "School can be challenging, but also rewarding! What do you like most about school?";
+    } else if (userMessage.includes("friend")) {
+        response = "Friends are great! I’d love to hear more about your friends.";
+    } else {
+        let genericResponses = [
+            "That's really interesting! Tell me more!",
+            "Wow, I like that too! What else do you like?",
+            "You're really fun to talk to! Let's keep chatting!",
+            "Haha, you're so funny! What's your favorite game?",
+            "You're cool! I want to know more about you!"
+        ];
+        response = genericResponses[Math.floor(Math.random() * genericResponses.length)];
+    }
+
+    addMessage(response, 'bot-message');
+}
     </script>
 </body>
 </html>
